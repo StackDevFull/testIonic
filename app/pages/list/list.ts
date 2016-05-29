@@ -5,37 +5,30 @@ import {Page, NavController, NavParams} from 'ionic-angular';
   templateUrl: 'build/pages/list/list.html'
 })
 export class ListPage {
-  mNav: any;
-  mSelectedItem: any;
-  mIcons: any;
-  mItems: any;
-  
-  static get parameters() {
-    return [[NavController], [NavParams]];
-  }
+  selectedItem: any;
+  icons: string[];
+  items: Array<{title: string, note: string, icon: string}>;
 
-  constructor(nav, navParams) {
-    this.mNav = nav;
-
+  constructor(private nav: NavController, navParams: NavParams) {
     // If we navigated to this page, we will have an item available as a nav param
-    this.mSelectedItem = navParams.get('item');
+    this.selectedItem = navParams.get('item');
 
-    this.mIcons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
+    this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
     'american-football', 'boat', 'bluetooth', 'build'];
 
-    this.mItems = [];
+    this.items = [];
     for(let i = 1; i < 11; i++) {
-      this.mItems.push({
+      this.items.push({
         title: 'Item ' + i,
         note: 'This is item #' + i,
-        icon: this.mIcons[Math.floor(Math.random() * this.mIcons.length)]
+        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
       });
     }
   }
 
   itemTapped(event, item) {
-    this.mNav.push(ListPage, {
+    this.nav.push(ListPage, {
       item: item
-    })
+    });
   }
 }

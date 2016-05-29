@@ -9,6 +9,7 @@ import {ListPage} from './pages/list/list';
   config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 export class MyApp {
+  @ViewChild(Nav) nav: Nav;
   rootPage: any;
   pages: any;
 
@@ -30,5 +31,11 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
     });
+  }
+  
+  openPage(page) {
+    // Reset the content nav to have just this page
+    // we wouldn't want the back button to show in this scenario
+    this.nav.setRoot(page.component);
   }
 }
