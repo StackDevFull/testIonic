@@ -22,7 +22,7 @@ export class Page1 {
               () => console.log('getRepos completed')
           );
       }
-      
+
       goToDetails(repo) {
           //this.nav.push(DetailsPage, { repo: repo });
       }
